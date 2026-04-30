@@ -22,11 +22,12 @@ public class Práctica_2025_26 {
             System.out.println("\nMenú Principal:");
             System.out.println("1. Crear personaje(Factory Method)");
             System.out.println("2. Clonar personaje(Prototype)");
-            System.out.println("3. Subir nivel de personaje (futura)");
-            System.out.println("4. Listar personajes(futura)");
-            System.out.println("5. Añade armas a personaje(futura)");
+            System.out.println("3. Crear ejercitos(Composite)");
+            System.out.println("4. Subir nivel de personaje (futura)");
+            System.out.println("5. Listar personajes(futura)");
+            System.out.println("6. Añade armas a personaje(futura)");
 
-            System.out.println("6. Salir");
+            System.out.println("7. Salir");
             System.out.print("Elige una opción: ");
             opcion = scanner.nextInt();
 
@@ -82,27 +83,56 @@ public class Práctica_2025_26 {
                     personajes.recorrer();
                     System.out.println("\nIntroduce el nombre del personaje a clonar");
                     String nombre = scanner2.nextLine();
-                    Personaje personaje = personajes.devuelvePersonaje(nombre);
-                    System.out.println("Quieres modificar alguna de sus caracteristicas? [si no]");
-                    String decision = scanner2.nextLine();
-                    decision.toUpperCase();
-                    
-                    if(decision.equals("SI")){
-                        System.out.println("Que caracteristicas quieres modificar?" + personaje.);
+                    Personaje original = personajes.devuelvePersonaje(nombre);
+
+                    if (original == null) {
+                        System.out.println("No se ha encontrado ningun personaje con ese nombre");
+
+                    } else {
+                        Personaje clon = original.clonar();
+                        clon.setNombre(original.getNombre() + " (copia)");
+                        System.out.println("Personaje clonado correctamente. Datos: ");
+                        System.out.println("Nombre: " + clon.getNombre());
+                        System.out.println("Nivel: " + clon.getNivel());
+                        String nombreHabilidad = clon.getTipo().getHabilidadEspecial();
+                        int valorHabilidad = clon.getValorHabilidadEspecial();
+                        System.out.println("Habilidad Especial: " + nombreHabilidad + " (" + valorHabilidad + ")");
+                        
+                        personajes.agregar(clon);
+
+                        System.out.println("\nQuieres crear un ejercito de este personaje? [si no]");
+                        String decision = scanner2.nextLine();
+                        decision.toUpperCase();
+
+                        if (decision.equalsIgnoreCase("SI")) {
+                            System.out.println("Introduce el numero de copias a realizar");
+                            int numeroCopias = scanner.nextInt();
+
+                            for (int i = 1; i < numeroCopias; i++) {
+                                Personaje personaje = clon.clonar();
+                                personaje.setNombre(clon.getNombre() + i);
+                                personajes.agregar(personaje);
+                            }
+                            System.out.println("Ejercito creado");
+                        }
                     }
-                    
-                    System.out.println("Clonaremos un personaje ya creado "
-                            + " modificando los datos que sean necesarios\n "
-                            + "y se añadirá a la lista, se podría añadir "
-                            + "la construcción de ejercitos, es decir,\n "
-                            + "crear por ejemplo un arquero con unas "
-                            + "características y después crear un número\n "
-                            + "de arqueros iguales.");
                     System.out.println("Presiona para continuar");
                     scanner2.nextLine();
                     break;
-
+                    
                 case 3:
+                    System.out.println("En este apartado vamos a crear ejercitos, un ejercito estará formado por un ´numero de guerreros (en principio solo de guerreros)"
+                            + "\nse valora la posibilidad de crear ejercitos de arqueros o magos.)"
+                            + "\nCada ejercito a su vez puede estar formados por otros ejercitos, por ejemplo, creo un ejercito llamado"
+                            + " \nlos Segundos Hijos (con 4 guerreros) y creo otro llamados los Inmaculados (con 6 guerreros), creo un tercero llamado Casa Daenerys Targaryen"
+                            + "\ny añado por ejemplo 5 guerreros a este último y los dos ejercitos creados con anterioridad, después debo mostrar"
+                            + "el nombre de todos los guerreros que forman el ejercito Casa Daenerys Targaryen"
+                            + "\nSe valora el uso del patrón del case 2");
+                    System.out.println("Presiona para continuar");
+                    scanner2.nextLine();
+                    break;
+                
+                case 4:
                     System.out.println("Subiremos el nivel de uno de los personajes, tendremos que elegir "
                             + "a uno de los añadidos por vosotros con anterioridad o de los ya existentes"
                             + " inicialmente");
@@ -111,7 +141,7 @@ public class Práctica_2025_26 {
                     scanner2.nextLine();
                     break;
 
-                case 4:
+                case 5:
                     System.out.println("Se mostrarán los distintos personajes"
                             + " se podrían incluir opociones de muestreo, ejemplo solo los "
                             + "magos o por orden de mayor nivel, etc. "
@@ -119,14 +149,16 @@ public class Práctica_2025_26 {
                     System.out.println("Presiona para continuar");
                     scanner2.nextLine();
                     break;
-                case 5:
+                
+                case 6:
                     System.out.println("Se añadirán armas a alguno de "
                             + "los personajes existentes añadiéndolas "
                             + "al String armas que tiene cada personaje ");
                     System.out.println("Presiona para continuar");
                     scanner2.nextLine();
                     break;
-                case 6:
+                
+                case 7:
                     System.out.println("Saliendo del programa...");
                     System.out.println("Presina para continuar");
                     scanner2.nextLine();
@@ -137,6 +169,6 @@ public class Práctica_2025_26 {
                     scanner2.nextLine();
             }
 
-        } while (opcion != 6);
+        } while (opcion != 7);
     }
 }

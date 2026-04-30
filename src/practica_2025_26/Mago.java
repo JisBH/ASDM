@@ -14,16 +14,15 @@ public class Mago extends PersonajeBase {
         //Al ser tipo un enum, tengo que guardarlo de este modo
         this.tipo=Personaje.Tipo.MAGO;
     }
-    
+
     @Override
-    public List<Personaje> clonar(int numCopias) {
-        List<Personaje> listaCopias = new ArrayList<>();
-        
-        for(int i = 0; i < numCopias; i++){
-            Mago copia = new Mago(this.nombre, this.nivel_magia);
-            listaCopias.add(copia);
-        }
-        return listaCopias;
+    public Personaje clonar() {
+        return new Mago(this.nombre, this.nivel_magia);
+    }
+
+    @Override
+    public int getValorHabilidadEspecial() {
+        return this.nivel_magia;
     }
     
 }

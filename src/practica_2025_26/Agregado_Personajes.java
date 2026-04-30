@@ -19,7 +19,7 @@ public class Agregado_Personajes implements I_Agregado_Personajes{
         System.out.println("Estos son los personajes creados hasta el momento.");
         for(int i=0;i<personajes.size();i++)
             //Probar a que me diga el nivel y otros datos
-            System.out.println(personajes.get(i).getNombre() + person);
+            System.out.println(personajes.get(i).getNombre());
     }
 
     @Override

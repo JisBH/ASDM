@@ -35,5 +35,14 @@ public interface Personaje {
 
     public String getNombre();
     
-    public List<Personaje> clonar(int numCopias);
+    public void setNombre(String nombre);
+    
+    public int getNivel();
+  
+    public Personaje.Tipo getTipo();
+    
+    public int getValorHabilidadEspecial();
+    
+    public Personaje clonar();
+
 }

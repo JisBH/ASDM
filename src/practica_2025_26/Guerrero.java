@@ -15,13 +15,12 @@ public class Guerrero extends PersonajeBase {
     }
     
     @Override
-    public List<Personaje> clonar(int numCopias) {
-        List<Personaje> listaCopias = new ArrayList<>();
-        
-        for(int i = 0; i < numCopias; i++){
-            Guerrero copia = new Guerrero(this.nombre, this.fuerza);
-            listaCopias.add(copia);
-        }
-        return listaCopias;
+    public Personaje clonar() {
+        return new Guerrero(this.nombre, this.fuerza);
+    }
+
+    @Override
+    public int getValorHabilidadEspecial() {
+        return this.fuerza;
     }
 }

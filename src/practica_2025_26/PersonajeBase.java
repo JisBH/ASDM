@@ -26,9 +26,20 @@ public abstract class PersonajeBase implements Personaje {
     public String getNombre() {
         return nombre;
     }
-
+    
+    @Override
+    public void setNombre(String nombre){
+        this.nombre = nombre;
+    }
+    
+    @Override
     public int getNivel() {
         return nivel;
+    }
+    
+    @Override
+    public Personaje.Tipo getTipo(){
+        return this.tipo;
     }
 
     public void mostrar() {

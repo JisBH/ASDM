@@ -15,13 +15,12 @@ public class Arquero extends PersonajeBase {
     }
 
     @Override
-    public List<Personaje> clonar(int numCopias) {
-        List<Personaje> listaCopias = new ArrayList<>();
-        
-        for(int i = 0; i < numCopias; i++){
-            Arquero copia = new Arquero(this.nombre, this.puntería);
-            listaCopias.add(copia);
-        }
-        return listaCopias;
+    public Personaje clonar() {
+        return new Arquero(this.nombre, this.puntería);
+    }
+
+    @Override
+    public int getValorHabilidadEspecial() {
+        return this.puntería;
     }
 }
