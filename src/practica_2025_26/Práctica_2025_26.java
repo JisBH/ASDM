@@ -97,7 +97,7 @@ public class Práctica_2025_26 {
                         String nombreHabilidad = clon.getTipo().getHabilidadEspecial();
                         int valorHabilidad = clon.getValorHabilidadEspecial();
                         System.out.println("Habilidad Especial: " + nombreHabilidad + " (" + valorHabilidad + ")");
-                        
+
                         personajes.agregar(clon);
 
                         System.out.println("\nQuieres crear un ejercito de este personaje? [si no]");
@@ -108,9 +108,9 @@ public class Práctica_2025_26 {
                             System.out.println("Introduce el numero de copias a realizar");
                             int numeroCopias = scanner.nextInt();
 
-                            for (int i = 1; i < numeroCopias; i++) {
+                            for (int i = 0; i < numeroCopias; i++) {
                                 Personaje personaje = clon.clonar();
-                                personaje.setNombre(clon.getNombre() + i);
+                                personaje.setNombre(clon.getNombre() + i + 1);
                                 personajes.agregar(personaje);
                             }
                             System.out.println("Ejercito creado");
@@ -119,19 +119,58 @@ public class Práctica_2025_26 {
                     System.out.println("Presiona para continuar");
                     scanner2.nextLine();
                     break;
-                    
+
                 case 3:
-                    System.out.println("En este apartado vamos a crear ejercitos, un ejercito estará formado por un ´numero de guerreros (en principio solo de guerreros)"
-                            + "\nse valora la posibilidad de crear ejercitos de arqueros o magos.)"
-                            + "\nCada ejercito a su vez puede estar formados por otros ejercitos, por ejemplo, creo un ejercito llamado"
-                            + " \nlos Segundos Hijos (con 4 guerreros) y creo otro llamados los Inmaculados (con 6 guerreros), creo un tercero llamado Casa Daenerys Targaryen"
-                            + "\ny añado por ejemplo 5 guerreros a este último y los dos ejercitos creados con anterioridad, después debo mostrar"
-                            + "el nombre de todos los guerreros que forman el ejercito Casa Daenerys Targaryen"
-                            + "\nSe valora el uso del patrón del case 2");
+                    personajes.recorrer();
+                    System.out.println("\nIntroduce el nombre del personaje a partir del cual hacer el ejercito");
+                    nombre = scanner2.nextLine();
+                    original = personajes.devuelvePersonaje(nombre);
+
+                    if (original == null) {
+                        System.out.println("No se ha encontrado ningun personaje con ese nombre");
+
+                    } else {
+
+                        Ejercito segundosHijos = new Ejercito("Segundos Hijos");
+                        Ejercito inmaculados = new Ejercito("Los Inmaculados");
+                        Ejercito targaryen = new Ejercito("Casa Daenerys Targaryen");
+
+                        //Creo los clones del soldado para el ejército Segundos Hijos 
+                        for (int i = 1; i <= 4; i++) {
+                            Personaje soldado = original.clonar();
+                            soldado.setNombre("Segundo Hijo: soldado " + i);
+                            personajes.agregar(soldado); 
+                            segundosHijos.agregaSoldado((EjercitoSuperior) soldado);
+                        }
+
+                        //Creo los clones del soldado para el ejército Los Inmaculados
+                        for (int i = 1; i <= 6; i++) {
+                            Personaje soldado = original.clonar();
+                            soldado.setNombre("Inmaculado: soldado " + i);
+                            personajes.agregar(soldado);
+                            inmaculados.agregaSoldado((EjercitoSuperior) soldado);
+                        }
+
+                        //Creo los clones del soldado para el ejército Guardia Targaryen
+                        for (int i = 1; i <= 5; i++) {
+                            Personaje soldado = original.clonar();
+                            soldado.setNombre("Targaryen: soldado " + i);
+                            personajes.agregar(soldado);
+                            targaryen.agregaSoldado((EjercitoSuperior) soldado);
+                        }
+
+                        //Añado los ejércitos pequeños al ejército grande
+                        targaryen.agregaSoldado(segundosHijos);
+                        targaryen.agregaSoldado(inmaculados);
+                        
+                        //Muestro toda la estructura de ejércitos y sus soldados
+                        targaryen.mostrarNombre();
+                    }
+
                     System.out.println("Presiona para continuar");
                     scanner2.nextLine();
                     break;
-                
+
                 case 4:
                     System.out.println("Subiremos el nivel de uno de los personajes, tendremos que elegir "
                             + "a uno de los añadidos por vosotros con anterioridad o de los ya existentes"
@@ -149,7 +188,7 @@ public class Práctica_2025_26 {
                     System.out.println("Presiona para continuar");
                     scanner2.nextLine();
                     break;
-                
+
                 case 6:
                     System.out.println("Se añadirán armas a alguno de "
                             + "los personajes existentes añadiéndolas "
@@ -157,7 +196,7 @@ public class Práctica_2025_26 {
                     System.out.println("Presiona para continuar");
                     scanner2.nextLine();
                     break;
-                
+
                 case 7:
                     System.out.println("Saliendo del programa...");
                     System.out.println("Presina para continuar");
@@ -165,7 +204,7 @@ public class Práctica_2025_26 {
                     break;
                 default:
                     System.out.println("Opción no válida.");
-                    System.out.println("Presina para continuar");
+                    System.out.println("Presiona para continuar");
                     scanner2.nextLine();
             }
 
