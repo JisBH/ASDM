@@ -1,6 +1,5 @@
 package practica_2025_26;
 
-
 public abstract class PersonajeBase extends EjercitoSuperior implements Personaje {
 
     protected String nombre;
@@ -26,41 +25,41 @@ public abstract class PersonajeBase extends EjercitoSuperior implements Personaj
     public String getNombre() {
         return nombre;
     }
-    
+
     @Override
-    public void setNombre(String nombre){
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+
     @Override
     public int getNivel() {
         return nivel;
     }
-    
+
     @Override
-    public Personaje.Tipo getTipo(){
+    public Personaje.Tipo getTipo() {
         return this.tipo;
     }
 
     public void mostrar() {
-        System.out.println("Nombre: " + nombre + ", Nivel: " + nivel + ", Armas: " + armas);
+        System.out.println("Nombre: " + nombre + ", Tipo: " + getTipo() + ", Habilidad: " + getTipo().getHabilidadEspecial() + " " + getValorHabilidadEspecial());
     }
-    
+
     //Vacío, una hoja no tiene más hojas dentro de ella
     @Override
-    public void agregaSoldado(EjercitoSuperior soldado){
+    public void agregaSoldado(EjercitoSuperior soldado) {
         return;
     }
-    
+
     //Vacío, una hoja no tiene más hojas dentro de ella
     @Override
-    public void eliminaSoldado(EjercitoSuperior soldado){
+    public void eliminaSoldado(EjercitoSuperior soldado) {
         return;
     }
-    
+
     //Muestro el nombre de los soldados del ejercito
     @Override
-    public void mostrarNombre(){
+    public void mostrarNombre() {
         System.out.println(nombre);
     }
 }

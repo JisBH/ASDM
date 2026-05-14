@@ -24,7 +24,7 @@ public class Práctica_2025_26 {
             System.out.println("2. Clonar personaje(Prototype)");
             System.out.println("3. Crear ejercitos(Composite)");
             System.out.println("4. Subir nivel de personaje (futura)");
-            System.out.println("5. Listar personajes(futura)");
+            System.out.println("5. Listar personajes(Iterator)");
             System.out.println("6. Añade armas a personaje(futura)");
 
             System.out.println("7. Salir");
@@ -139,7 +139,7 @@ public class Práctica_2025_26 {
                         for (int i = 1; i <= 4; i++) {
                             Personaje soldado = original.clonar();
                             soldado.setNombre("Segundo Hijo: soldado " + i);
-                            personajes.agregar(soldado); 
+                            personajes.agregar(soldado);
                             segundosHijos.agregaSoldado((EjercitoSuperior) soldado);
                         }
 
@@ -162,7 +162,7 @@ public class Práctica_2025_26 {
                         //Añado los ejércitos pequeños al ejército grande
                         targaryen.agregaSoldado(segundosHijos);
                         targaryen.agregaSoldado(inmaculados);
-                        
+
                         //Muestro toda la estructura de ejércitos y sus soldados
                         targaryen.mostrarNombre();
                     }
@@ -181,10 +181,45 @@ public class Práctica_2025_26 {
                     break;
 
                 case 5:
-                    System.out.println("Se mostrarán los distintos personajes"
-                            + " se podrían incluir opociones de muestreo, ejemplo solo los "
-                            + "magos o por orden de mayor nivel, etc. "
-                            + "Con un par bastaría. ");
+                    System.out.println("1 Listar todos los personajes");
+                    System.out.println("2 Listar los magos");
+                    System.out.println("3 Listar ordenados de mayor a menor valor de habilidad especial");
+                    opcion = scanner.nextInt();
+
+                    if (opcion == 1) {
+                        I_Iterador itTod = personajes.crearIteradorTodos();
+
+                        while (itTod.tieneSiguiente()) {
+                            PersonajeBase p = (PersonajeBase) itTod.siguiente();
+
+                            if (p != null) {
+                                p.mostrar();
+                            }
+                        }
+
+                    } else if (opcion == 2) {
+                        I_Iterador itMag = personajes.crearIteradorMago();
+
+                        while (itMag.tieneSiguiente()) {
+                            PersonajeBase p = (PersonajeBase) itMag.siguiente();
+
+                            if (p != null) {
+                                p.mostrar();
+                            }
+                        }
+                        
+                    } else if (opcion == 3) {
+                        I_Iterador itHab = personajes.crearIteradorHabilidad();
+
+                        while (itHab.tieneSiguiente()) {
+                            PersonajeBase p = (PersonajeBase) itHab.siguiente();
+
+                            if (p != null) {
+                                p.mostrar();
+                            }
+                        }
+                    }
+
                     System.out.println("Presiona para continuar");
                     scanner2.nextLine();
                     break;
@@ -199,7 +234,7 @@ public class Práctica_2025_26 {
 
                 case 7:
                     System.out.println("Saliendo del programa...");
-                    System.out.println("Presina para continuar");
+                    System.out.println("Presiona para continuar");
                     scanner2.nextLine();
                     break;
                 default:
