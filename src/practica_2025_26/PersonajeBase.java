@@ -40,7 +40,8 @@ public abstract class PersonajeBase extends EjercitoSuperior implements Personaj
     public Personaje.Tipo getTipo() {
         return this.tipo;
     }
-
+    
+    @Override
     public void mostrar() {
         System.out.println("Nombre: " + nombre + ", Tipo: " + getTipo() + ", Habilidad: " + getTipo().getHabilidadEspecial() + " " + getValorHabilidadEspecial());
     }

@@ -6,10 +6,8 @@ package practica_2025_26;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author Usuario
- */
+
+// Recorre la lista de personajes devolviéndolos todos
 public class IteradorTodos implements I_Iterador {
 
     private ArrayList<Personaje> personajes;

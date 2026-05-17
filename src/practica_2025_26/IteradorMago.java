@@ -6,10 +6,8 @@ package practica_2025_26;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author Usuario
- */
+
+// Recorre la lista de personajes y solo devuelve a los magos 
 public class IteradorMago implements I_Iterador {
 
     private ArrayList<Personaje> personajes;
@@ -21,25 +19,28 @@ public class IteradorMago implements I_Iterador {
 
     @Override
     public Object siguiente() {
-        if (posicion < personajes.size()) {
-            if (personajes.get(posicion) instanceof Mago) {
-                return personajes.get(posicion++);
-            } else {
-                posicion++;
-                return null;
-            }
+        // Por si acaso en el main no se llama a tieneSiguiente() antes, me aseguro de que
+        // posicion este apuntando a un mago
+        if (this.tieneSiguiente()) {
+            // Como en el main he hecho un while de tieneSiguiente(), se que posicion va
+            // a estar apuntando al proximo mago y puedo hacer el return directamente
+            return personajes.get(posicion++);
         } else {
-            System.out.println("No hay mas personajes");
+            System.out.println("No hay mas magos");
             return null;
         }
     }
 
     @Override
     public boolean tieneSiguiente() {
-        if (posicion < personajes.size()) {
-            return true;
-        } else {
-            return false;
+        // Como solo tenemos que iterar por los magos, buscamos si existe un mago
+        // No solo averiguamos si hay mas magos, sino que dejo posicion apuntando a un mago
+        while (posicion < personajes.size()) {
+            if (personajes.get(posicion) instanceof Mago) {
+                return true;
+            }
+            posicion++;
         }
+        return false;
     }
 }

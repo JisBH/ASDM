@@ -44,5 +44,7 @@ public interface Personaje {
     public int getValorHabilidadEspecial();
     
     public Personaje clonar();
+    
+    public void mostrar();
 
 }

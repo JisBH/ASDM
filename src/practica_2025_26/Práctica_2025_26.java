@@ -184,13 +184,14 @@ public class Práctica_2025_26 {
                     System.out.println("1 Listar todos los personajes");
                     System.out.println("2 Listar los magos");
                     System.out.println("3 Listar ordenados de mayor a menor valor de habilidad especial");
+                    System.out.println("Indique la opcion: ");
                     opcion = scanner.nextInt();
 
                     if (opcion == 1) {
                         I_Iterador itTod = personajes.crearIteradorTodos();
 
                         while (itTod.tieneSiguiente()) {
-                            PersonajeBase p = (PersonajeBase) itTod.siguiente();
+                            Personaje p = (Personaje) itTod.siguiente();
 
                             if (p != null) {
                                 p.mostrar();
@@ -201,7 +202,7 @@ public class Práctica_2025_26 {
                         I_Iterador itMag = personajes.crearIteradorMago();
 
                         while (itMag.tieneSiguiente()) {
-                            PersonajeBase p = (PersonajeBase) itMag.siguiente();
+                            Personaje p = (Personaje) itMag.siguiente();
 
                             if (p != null) {
                                 p.mostrar();
@@ -212,7 +213,7 @@ public class Práctica_2025_26 {
                         I_Iterador itHab = personajes.crearIteradorHabilidad();
 
                         while (itHab.tieneSiguiente()) {
-                            PersonajeBase p = (PersonajeBase) itHab.siguiente();
+                            Personaje p = (Personaje) itHab.siguiente();
 
                             if (p != null) {
                                 p.mostrar();
