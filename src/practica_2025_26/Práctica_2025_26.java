@@ -172,10 +172,15 @@ public class Práctica_2025_26 {
                     break;
 
                 case 4:
-                    System.out.println("Subiremos el nivel de uno de los personajes, tendremos que elegir "
-                            + "a uno de los añadidos por vosotros con anterioridad o de los ya existentes"
-                            + " inicialmente");
-                    System.out.println("Indicaremos al resto que se ha subido de nivel");
+                    System.out.println("Vamos a simular que un personaje (Guerrero, Mago o Arquero\n"
+                            + " muere en combate, con lo cual debemos eliminarlo de la lista de\n"
+                            + " de personajes. Debemos a continuación indicar, comunicar al resto de\n"
+                            + " los personajes que dicho personaje ha fallecido en combate.\n"
+                            + "Como extra se puede hacer la modificación de comunicar únicamente a\n"
+                            + "los integrantes del ejercito al que pertenecía.\n"
+                            + "Como pista indicar que no es necesario añadir clases extras a las ya\n"
+                            + "creadas, solo modificar las existentes.  ");
+                    
                     System.out.println("Presiona para continuar");
                     scanner2.nextLine();
                     break;
