@@ -18,8 +18,7 @@ public class Agregado_Personajes implements I_Agregado_Personajes {
     @Override
     public void recorrer() {
         System.out.println("Estos son los personajes creados hasta el momento.");
-        for (int i = 0; i < personajes.size(); i++)
-        {
+        for (int i = 0; i < personajes.size(); i++) {
             System.out.println(personajes.get(i).getNombre());
         }
     }
@@ -48,5 +47,10 @@ public class Agregado_Personajes implements I_Agregado_Personajes {
     @Override
     public I_Iterador crearIteradorHabilidad() {
         return new IteradorHabilidad(personajes);
+    }
+
+    @Override
+    public void eliminar(Personaje p) {
+        this.personajes.remove(p);
     }
 }

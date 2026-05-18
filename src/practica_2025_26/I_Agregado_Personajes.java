@@ -13,4 +13,6 @@ public interface I_Agregado_Personajes {
     I_Iterador crearIteradorTodos();
 
     I_Iterador crearIteradorHabilidad();
+
+    void eliminar(Personaje p);
 }

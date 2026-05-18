@@ -34,17 +34,35 @@ public interface Personaje {
     void subirNivel();
 
     public String getNombre();
-    
+
     public void setNombre(String nombre);
-    
+
     public int getNivel();
-  
+
     public Personaje.Tipo getTipo();
-    
+
     public int getValorHabilidadEspecial();
-    
+
     public Personaje clonar();
-    
+
     public void mostrar();
+
+    //Tanto el sujeto como el observador son de tipo Personaje, así que la interfaz debe
+    //tener los métodos de ambos "roles"
+    
+    //Método del sujeto
+    public void agregarObservador(Personaje p);
+
+    //Método del sujeto
+    public void eliminarObservador(Personaje p);
+
+    //Método del sujeto
+    public void notificarMuerte(Personaje p);
+
+    //Método del sujeto
+    public void matar();
+
+    //Método del observador
+    public void recibirAvisoMuerte(Personaje p);
 
 }

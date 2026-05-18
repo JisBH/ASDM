@@ -19,16 +19,16 @@ public class Práctica_2025_26 {
                 System.out.println();
             }
 
-            System.out.println("\nMenú Principal:");
+            System.out.println("\nMenu Principal:");
             System.out.println("1. Crear personaje(Factory Method)");
             System.out.println("2. Clonar personaje(Prototype)");
             System.out.println("3. Crear ejercitos(Composite)");
-            System.out.println("4. Subir nivel de personaje (futura)");
+            System.out.println("4. Morir en combate (Observer)");
             System.out.println("5. Listar personajes(Iterator)");
-            System.out.println("6. Añade armas a personaje(futura)");
+            System.out.println("6. Anhade armas a personaje(futura)");
 
             System.out.println("7. Salir");
-            System.out.print("Elige una opción: ");
+            System.out.print("Elige una opcion: ");
             opcion = scanner.nextInt();
 
             for (int i = 0; i < 50; ++i) {
@@ -172,15 +172,18 @@ public class Práctica_2025_26 {
                     break;
 
                 case 4:
-                    System.out.println("Vamos a simular que un personaje (Guerrero, Mago o Arquero\n"
-                            + " muere en combate, con lo cual debemos eliminarlo de la lista de\n"
-                            + " de personajes. Debemos a continuación indicar, comunicar al resto de\n"
-                            + " los personajes que dicho personaje ha fallecido en combate.\n"
-                            + "Como extra se puede hacer la modificación de comunicar únicamente a\n"
-                            + "los integrantes del ejercito al que pertenecía.\n"
-                            + "Como pista indicar que no es necesario añadir clases extras a las ya\n"
-                            + "creadas, solo modificar las existentes.  ");
-                    
+                    System.out.println("Introduce el nombre del personaje a matar: ");
+                    nombre = scanner2.nextLine();
+                    Personaje victima = personajes.devuelvePersonaje(nombre);
+
+                    if (victima == null) {
+                        System.out.println("No se ha encontrado ningun personaje con ese nombre");
+
+                    } else {
+                        victima.matar();
+                        personajes.eliminar(victima);
+                    }
+
                     System.out.println("Presiona para continuar");
                     scanner2.nextLine();
                     break;
@@ -213,7 +216,7 @@ public class Práctica_2025_26 {
                                 p.mostrar();
                             }
                         }
-                        
+
                     } else if (opcion == 3) {
                         I_Iterador itHab = personajes.crearIteradorHabilidad();
 
@@ -231,8 +234,8 @@ public class Práctica_2025_26 {
                     break;
 
                 case 6:
-                    System.out.println("Se añadirán armas a alguno de "
-                            + "los personajes existentes añadiéndolas "
+                    System.out.println("Se añadiran armas a alguno de "
+                            + "los personajes existentes añadiendolas "
                             + "al String armas que tiene cada personaje ");
                     System.out.println("Presiona para continuar");
                     scanner2.nextLine();
@@ -244,7 +247,7 @@ public class Práctica_2025_26 {
                     scanner2.nextLine();
                     break;
                 default:
-                    System.out.println("Opción no válida.");
+                    System.out.println("Opcion no valida.");
                     System.out.println("Presiona para continuar");
                     scanner2.nextLine();
             }
